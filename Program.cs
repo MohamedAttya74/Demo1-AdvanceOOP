@@ -1,6 +1,6 @@
 ﻿namespace Demo1_AdvanceOOP
 {
-    internal class Program
+      class Program
     {
         static void Main(string[] args)
         {
@@ -31,6 +31,61 @@
 
 
             #endregion
+
+            #region Genaric Search Example02
+
+            ///  int[] Numbers = [ 10 , 2 ,8 ,4 ,9 , 1, 5, 3, 7, 6  ];
+            /// 
+            /// int Result = Helper<int>.LinearSearch(Numbers, 9);
+            ///  Console.WriteLine($"Result = {Result}");
+
+            /// Employee[] Employees =
+            /// {
+            /// 
+            ///     new Employee() { ID = 10 ,Name = "Ahmed" , Salary= 8_000 },
+            ///     new Employee() { ID = 20 ,Name = "Omar" , Salary= 2_000 },
+            ///     new Employee() { ID = 30 ,Name = "Omniaa" , Salary= 5_000 },
+            ///     new Employee() { ID = 40 ,Name = "Sharaf" , Salary= 9_000 },
+            ///     
+            /// };
+            /// 
+            /// int index = Helper<Employee>.LinearSearch(Employees, new Employee() { ID = 30, Name = "Omniaa", Salary = 5_000 });
+
+
+            /// Console.WriteLine($" index = {index}");
+            ///   Employee E01 = new Employee() { ID = 10 , Name = "Ahmed" , Salary= 5_000 }; 
+            ///   Employee E02 = new Employee() { ID = 10, Name = "Ahmed", Salary = 5_000 };
+            /// 
+            /// Console.WriteLine($"E01.GetHashCode() = {E01.GetHashCode()}");
+            /// Console.WriteLine($"E02.GetHashCode() = {E02.GetHashCode()}");
+            /// 
+            /// //if (E01 == E02)   
+            /// if (E01.Equals(E02))  //  هنا هيفرق  Equality  ف ال Interface   او ال Classes  زي ال   Ref انما لو بيقارن حاجه  State ب  State   هنا كان بيقارن  
+            /// {
+            ///     Console.WriteLine("EQUALS");
+            /// }
+            /// else
+            /// {
+            ///     Console.WriteLine("!EQUALS");
+            /// }  
+            #endregion
+
+            #region EQUALITY  ( == , Equals )&& GetHashCode 
+
+     ///   Employee E01 = new Employee() { ID = 10, Name = "Ahmed", Salary = 5_000 };
+     ///   Employee E02 = new Employee() { ID = 10, Name = "Ahmed", Salary = 5_000 };
+     /// 
+     ///   Console.WriteLine($"E01.GetHashCode() = {E01.GetHashCode()}");
+     ///   Console.WriteLine($" E02.GetHashCode() = {E02.GetHashCode()}");
+     /// 
+     /// 
+     ///   //  if (E01 == E02)   // ==: Address   ب Address     بتقارن 
+     ///   if (E01.Equals(E02))  //Referance Base Equality  يعني الاتنين 
+     ///       Console.WriteLine("EQUALS");  //  زي ما هي  Referance Base Equality  ==  وال   Equals==> Value  Base Equality  كدا بقت ال   Override to Equals بعد ما عملت ال 
+     ///   else
+     ///       Console.WriteLine("!EQUALS"); 
+            #endregion
+
 
 
 
