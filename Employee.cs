@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -7,7 +8,30 @@ using System.Threading.Tasks;
 
 namespace Demo1_AdvanceOOP
 {
-     internal class  Employee
+    internal class EmployeeEqualityComparerName : IEqualityComparer<Employee>
+    {
+        public bool Equals(Employee? x, Employee? y)
+        {
+            return x?.Name == y?.Name;
+        }
+
+        public int GetHashCode([DisallowNull] Employee obj)
+        {
+            return HashCode.Combine(obj.Name);
+        }
+    }  internal class EmployeeEqualityComparerID : IEqualityComparer<Employee>
+    {
+        public bool Equals(Employee? x, Employee? y)
+        {
+            return x?.ID == y?.ID;
+        }
+
+        public int GetHashCode([DisallowNull] Employee obj)
+        {
+            return HashCode.Combine(obj.ID);
+        }
+    }
+    internal class Employee : IEquatable<Employee>
     {    // struct inherte from Class Value Type    after that Class Value Type inherte  from Object 
          // Equals and GetHashCode()     مهمين جدا وهما ال Two Methods  علي  override    مهم جدا وهو علشان ي   Object  و struct    بين اي   Class Value Type وجود ال 
 
@@ -17,14 +41,38 @@ namespace Demo1_AdvanceOOP
 
 
 
-        public override bool Equals(object? obj)
-        {
-          /*  Employee? other = (Employee?) obj;*/ // Unsafe Casting 
+        //public override bool Equals(object? obj)
+        //{
 
-            Employee? Other = obj as Employee;   // as:  Employee يكون من نوع ال  obj ودي معناها انها هتنجح ف حاله واحده وهي ان ال    Casting بنستخدمها ف ال 
-            if (Other == null) return false;      
-            return this.ID.Equals(Other.ID) && this.Name.Equals(Other.Name) && this.Salary.Equals(Other.Salary); 
+
+        //    // 1- is operator 
+        //    /// if(obj is Employee Other) // No Eception Will be Throw 
+        //    ///  {
+        //    ///     return this.ID.Equals(Other.ID) && this.Name.Equals(Other.Name) && this.Salary.Equals(Other.Salary); 
+        //    ///  }
+
+        //    // 2- as Operator    // No Eception Will be Throw 
+        //    ///  Employee? Other = obj as Employee;   // as:  Employee يكون من نوع ال  obj ودي معناها انها هتنجح ف حاله واحده وهي ان ال    Casting بنستخدمها ف ال 
+        //    /// if (Other == null) return false;   
+        //    /// return this.ID.Equals(Other.ID) && this.Name.Equals(Other.Name) && this.Salary.Equals(Other.Salary); 
+
+
+        //    /// Employee? Other;
+        //    /// Other=  (Employee?)obj; // Unsafe Casting 
+        //    /// 
+        //    /// if (Other == null) return false;      
+        //    /// return this.ID.Equals(Other.ID) && this.Name.Equals(Other.Name) && this.Salary.Equals(Other.Salary); 
+        //}
+
+        public bool Equals(Employee? other)
+        {
+            if(other == null) return false;
+           return this.ID.Equals(other.ID) && this.Name.Equals(other.Name) && this.Salary.Equals(other.Salary); 
         }
+
+
+
+
 
         //employee01= {ID = 10 , Name = "Ahmed" , Salary= 1000}
         //employee02= {ID = 1000 , Name = "Ahmed" , Salary= 10}
@@ -42,6 +90,8 @@ namespace Demo1_AdvanceOOP
               //return ID.GetHashCode() ^ Name?.GetHashCode() ?? default(int) /*0*/ ^  Salary.GetHashCode() ;  // +  بس ف نفس الوقت دي مش احسن طريقه علشان ممكن يحصل تصادم حتي بطريقه ال   Processing  اسرع فال 
              // return ID.GetHashCode() + Name?.GetHashCode() ?? default(int) /*0*/ + Salary.GetHashCode() ;
         }
+
+       
 
 
 

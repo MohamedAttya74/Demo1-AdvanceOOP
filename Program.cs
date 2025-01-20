@@ -39,18 +39,36 @@
             /// int Result = Helper<int>.LinearSearch(Numbers, 9);
             ///  Console.WriteLine($"Result = {Result}");
 
-            /// Employee[] Employees =
-            /// {
-            /// 
-            ///     new Employee() { ID = 10 ,Name = "Ahmed" , Salary= 8_000 },
-            ///     new Employee() { ID = 20 ,Name = "Omar" , Salary= 2_000 },
-            ///     new Employee() { ID = 30 ,Name = "Omniaa" , Salary= 5_000 },
-            ///     new Employee() { ID = 40 ,Name = "Sharaf" , Salary= 9_000 },
-            ///     
-            /// };
-            /// 
-            /// int index = Helper<Employee>.LinearSearch(Employees, new Employee() { ID = 30, Name = "Omniaa", Salary = 5_000 });
-
+            ///     Employee[] Employees =
+     ///     {
+     ///     
+     ///         new Employee() { ID = 10 ,Name = "Ahmed" , Salary= 8_000 },
+     ///         new Employee() { ID = 20 ,Name = "Omar" , Salary= 2_000 },
+     ///         new Employee() { ID = 30 ,Name = "Omniaa" , Salary= 5_000 },
+     ///         new Employee() { ID = 40 ,Name = "Sharaf" , Salary= 9_000 },
+     ///         
+     ///     };
+     /// 
+     ///  int index = Helper<Employee>.LinearSearch(Employees, new Employee() { ID = 30, Name = "Omniaa", Salary = 5_000 });
+     ///  int index = Helper<Employee>.LinearSearch(Employees, new Employee() { Name = "Omniaa" },new EmployeeEqualityComparer());
+     ///    int index = Helper<Employee>.LinearSearch(Employees, new Employee() { ID = 40 },new EmployeeEqualityComparerID());
+ 
+           /// int index = Helper<Employee>.LinearSearch(Employees,
+       /// 
+       ///     new Employee() { ID = 10, Name = "Ahmed" },
+       ///     delegate (Employee x, Employee y) { return x.Name == y.Name; }
+       ///     ); ;
+            
+           ///  int index = Helper<Employee>.LinearSearch(Employees,
+       /// 
+       ///      new Employee() { ID = 10, Name = "Ahmed" },
+       ///       ( x, y) =>  x.Name == y.Name 
+       ///      ); ;
+       /// 
+       ///  
+       /// 
+       ///  
+       ///  Console.WriteLine($"Index = {index}");
 
             /// Console.WriteLine($" index = {index}");
             ///   Employee E01 = new Employee() { ID = 10 , Name = "Ahmed" , Salary= 5_000 }; 

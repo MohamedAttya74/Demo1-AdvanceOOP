@@ -35,6 +35,37 @@ namespace Demo1_AdvanceOOP
                 }
             return -1;
         }
+        public static int LinearSearch(T[] Arr, T Value, IEqualityComparer <T> equalityComparer)
+        {
+            if (Arr?.Length > 0 && Value is not null)
+
+                for (int i = 0; i < Arr.Length; i++)
+                {
+
+                    //if (Value == Arr[i])
+                    //if (Value.Equals (Arr[i]))
+                    if (equalityComparer.Equals(Value, Arr[i]))
+                        return i;
+                    
+                }
+            return -1;
+        }
+        public static int LinearSearch(T[] Arr, T Value,Func<T,T,bool> equals)
+        {
+            if (Arr?.Length > 0 && Value is not null)
+
+                for (int i = 0; i < Arr.Length; i++)
+                {
+
+                    //if (Value == Arr[i])
+                    //if (Value.Equals (Arr[i]))
+                    //if (equalityComparer.Equals(Value, Arr[i]))
+                    if (equals(Value , Arr[i]))
+                        return i;
+                    
+                }
+            return -1;
+        }
            
 
 
