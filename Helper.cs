@@ -7,11 +7,64 @@ using System.Threading.Tasks;
 
 namespace Demo1_AdvanceOOP
 {
-    internal static  class   Helper <T> /* where T : class*/
+    internal static  class   Helper <T> where T: IComparable<T>  // T must be Class or Struct Immplementing the built-in InterFace "IComparable"
+        /* where T : class*/
     {      //    بس  Method   وممكن يكون علي ال    class   ممكن يكون علي ال  Genaric    ال 
                     
       
         
+        public static void BubbleSort(T[] Arr)
+        {
+            if(Arr is null || Arr.Length == 0) 
+                    return;
+            for (int i = 0; i < Arr.Length; i++)
+            {
+                for (int j = 0;j<Arr.Length-1-i; j++)
+                {
+                    if (Arr[j].CompareTo (Arr[j + 1]) ==  1 /*-1*/)
+                    {
+                    /*Helper<T>.*/  SWAP(ref Arr[j] , ref Arr[j+1]);
+                    }
+                }
+            }
+        }
+
+        public static void BubbleSort(T[] Arr , IComparer <T> comparer)
+        {
+            if(Arr is null || Arr.Length == 0) 
+                    return;
+            for (int i = 0; i < Arr.Length; i++)
+            {
+                for (int j = 0;j<Arr.Length-1-i; j++)
+                {
+                    if (comparer.Compare (Arr[j], Arr[j + 1]) ==  1 )
+                    {
+                    /*Helper<T>.*/  SWAP(ref Arr[j] , ref Arr[j+1]);
+                    }
+                }
+            }
+        } public static void BubbleSort(T[] Arr, Func<T, T, bool> comparer)
+        {
+            if(Arr is null || Arr.Length == 0) 
+                    return;
+            for (int i = 0; i < Arr.Length; i++)
+            {
+                for (int j = 0;j<Arr.Length-1-i; j++)
+                {
+                    if (comparer(Arr[j], Arr[j + 1]) )
+                    {
+                    /*Helper<T>.*/  SWAP(ref Arr[j] , ref Arr[j+1]);
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
         public static void SWAP (ref T X  , ref T Y  )// T ==> Same Templet in C++ , JaveScript 
         {
             Console.WriteLine("=================SWAP=============== ");
@@ -82,7 +135,6 @@ namespace Demo1_AdvanceOOP
             ///                          // 3-  ممكن يجي ودا مش كويس طبعا   Type بتاعي مفتوح ل اي  Scope   يعني ال Limits   مش  Object   ال 
             ///     Y = Temp;
             /// }
-
 
 
             /// public static void SWAP(ref double X  , ref double  Y  )

@@ -40,35 +40,35 @@
             ///  Console.WriteLine($"Result = {Result}");
 
             ///     Employee[] Employees =
-     ///     {
-     ///     
-     ///         new Employee() { ID = 10 ,Name = "Ahmed" , Salary= 8_000 },
-     ///         new Employee() { ID = 20 ,Name = "Omar" , Salary= 2_000 },
-     ///         new Employee() { ID = 30 ,Name = "Omniaa" , Salary= 5_000 },
-     ///         new Employee() { ID = 40 ,Name = "Sharaf" , Salary= 9_000 },
-     ///         
-     ///     };
-     /// 
-     ///  int index = Helper<Employee>.LinearSearch(Employees, new Employee() { ID = 30, Name = "Omniaa", Salary = 5_000 });
-     ///  int index = Helper<Employee>.LinearSearch(Employees, new Employee() { Name = "Omniaa" },new EmployeeEqualityComparer());
-     ///    int index = Helper<Employee>.LinearSearch(Employees, new Employee() { ID = 40 },new EmployeeEqualityComparerID());
- 
-           /// int index = Helper<Employee>.LinearSearch(Employees,
-       /// 
-       ///     new Employee() { ID = 10, Name = "Ahmed" },
-       ///     delegate (Employee x, Employee y) { return x.Name == y.Name; }
-       ///     ); ;
-            
-           ///  int index = Helper<Employee>.LinearSearch(Employees,
-       /// 
-       ///      new Employee() { ID = 10, Name = "Ahmed" },
-       ///       ( x, y) =>  x.Name == y.Name 
-       ///      ); ;
-       /// 
-       ///  
-       /// 
-       ///  
-       ///  Console.WriteLine($"Index = {index}");
+            ///     {
+            ///     
+            ///         new Employee() { ID = 10 ,Name = "Ahmed" , Salary= 8_000 },
+            ///         new Employee() { ID = 20 ,Name = "Omar" , Salary= 2_000 },
+            ///         new Employee() { ID = 30 ,Name = "Omniaa" , Salary= 5_000 },
+            ///         new Employee() { ID = 40 ,Name = "Sharaf" , Salary= 9_000 },
+            ///         
+            ///     };
+            /// 
+            ///  int index = Helper<Employee>.LinearSearch(Employees, new Employee() { ID = 30, Name = "Omniaa", Salary = 5_000 });
+            ///  int index = Helper<Employee>.LinearSearch(Employees, new Employee() { Name = "Omniaa" },new EmployeeEqualityComparer());
+            ///    int index = Helper<Employee>.LinearSearch(Employees, new Employee() { ID = 40 },new EmployeeEqualityComparerID());
+
+            /// int index = Helper<Employee>.LinearSearch(Employees,
+            /// 
+            ///     new Employee() { ID = 10, Name = "Ahmed" },
+            ///     delegate (Employee x, Employee y) { return x.Name == y.Name; }
+            ///     ); ;
+
+            ///  int index = Helper<Employee>.LinearSearch(Employees,
+            /// 
+            ///      new Employee() { ID = 10, Name = "Ahmed" },
+            ///       ( x, y) =>  x.Name == y.Name 
+            ///      ); ;
+            /// 
+            ///  
+            /// 
+            ///  
+            ///  Console.WriteLine($"Index = {index}");
 
             /// Console.WriteLine($" index = {index}");
             ///   Employee E01 = new Employee() { ID = 10 , Name = "Ahmed" , Salary= 5_000 }; 
@@ -90,24 +90,59 @@
 
             #region EQUALITY  ( == , Equals )&& GetHashCode 
 
-     ///   Employee E01 = new Employee() { ID = 10, Name = "Ahmed", Salary = 5_000 };
-     ///   Employee E02 = new Employee() { ID = 10, Name = "Ahmed", Salary = 5_000 };
-     /// 
-     ///   Console.WriteLine($"E01.GetHashCode() = {E01.GetHashCode()}");
-     ///   Console.WriteLine($" E02.GetHashCode() = {E02.GetHashCode()}");
-     /// 
-     /// 
-     ///   //  if (E01 == E02)   // ==: Address   ب Address     بتقارن 
-     ///   if (E01.Equals(E02))  //Referance Base Equality  يعني الاتنين 
-     ///       Console.WriteLine("EQUALS");  //  زي ما هي  Referance Base Equality  ==  وال   Equals==> Value  Base Equality  كدا بقت ال   Override to Equals بعد ما عملت ال 
-     ///   else
-     ///       Console.WriteLine("!EQUALS"); 
+            ///   Employee E01 = new Employee() { ID = 10, Name = "Ahmed", Salary = 5_000 };
+            ///   Employee E02 = new Employee() { ID = 10, Name = "Ahmed", Salary = 5_000 };
+            /// 
+            ///   Console.WriteLine($"E01.GetHashCode() = {E01.GetHashCode()}");
+            ///   Console.WriteLine($" E02.GetHashCode() = {E02.GetHashCode()}");
+            /// 
+            /// 
+            ///   //  if (E01 == E02)   // ==: Address   ب Address     بتقارن 
+            ///   if (E01.Equals(E02))  //Referance Base Equality  يعني الاتنين 
+            ///       Console.WriteLine("EQUALS");  //  زي ما هي  Referance Base Equality  ==  وال   Equals==> Value  Base Equality  كدا بقت ال   Override to Equals بعد ما عملت ال 
+            ///   else
+            ///       Console.WriteLine("!EQUALS"); 
             #endregion
 
 
+            #region Genaric Example03 
+            /// int[] Numbers = [9, 4, 10, 6, 2, 8, 5, 1, 3, 7]; 
+            /// Helper<int>.BubbleSort(Numbers);
+            /// 
+            /// foreach (int number in Numbers)
+            /// {
+            ///     Console.WriteLine(number);
+            /// }
 
-
-
+            ///   Employee[] Employees =
+            ///   {
+            /// 
+            ///        new Employee() { ID = 10 ,Name = "Ahmed" , Salary= 8_000 },
+            ///        new Employee() { ID = 20 ,Name = "Omar" , Salary= 2_000 },
+            ///        new Employee() { ID = 50 ,Name = "Zeyad" , Salary= 2_000 },
+            ///        new Employee() { ID = 30 ,Name = "Omniaa" , Salary= 5_000 },
+            ///        new Employee() { ID = 40 ,Name = "Sharaf" , Salary= 9_000 },
+            /// 
+            ///      };
+            /// 
+            ///     Helper<Employee>.BubbleSort(Employees);
+            ///     Helper<Employee>.BubbleSort(Employees , new EmployeeComparerByID());  // Orderd By Id 
+            ///     Helper<Employee>.BubbleSort(Employees , new EmployeeComparerByName());  // Orderd By Id 
+            ///     Helper<Employee>.BubbleSort(Employees, delegate (Employee X, Employee Y)
+            ///     {
+            ///         return X.ID.CompareTo(Y.ID) == 1;
+            ///     }); 
+            /// 
+            ///   Helper<Employee>.BubbleSort(Employees,  ( X, Y) => X.ID.CompareTo(Y.ID) == 1);
+            ///    
+            ///   
+            ///     
+            ///     
+            ///   
+            ///   foreach (var Employee in Employees)
+            ///             Console.WriteLine(Employee);
+            ///  
+            #endregion
         }
     }
 }

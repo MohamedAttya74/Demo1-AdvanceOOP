@@ -19,7 +19,8 @@ namespace Demo1_AdvanceOOP
         {
             return HashCode.Combine(obj.Name);
         }
-    }  internal class EmployeeEqualityComparerID : IEqualityComparer<Employee>
+    } 
+    internal class EmployeeEqualityComparerID : IEqualityComparer<Employee>
     {
         public bool Equals(Employee? x, Employee? y)
         {
@@ -31,13 +32,67 @@ namespace Demo1_AdvanceOOP
             return HashCode.Combine(obj.ID);
         }
     }
-    internal class Employee : IEquatable<Employee>
+
+    internal class EmployeeComparerByID : IComparer<Employee>
+    {
+        public int Compare(Employee? x, Employee? y)
+        {
+            return x?.ID.CompareTo(y?.ID) ??( y is null ?0 :-1) ;
+        }
+    }  
+    internal class EmployeeComparerByName : IComparer<Employee>
+    {
+        public int Compare(Employee? x, Employee? y)
+        {
+            return x?.Name?.CompareTo(y?.Name) ??( y is null ?0 :-1) ;
+        }
+    }
+    internal class Employee : IEquatable<Employee>, IComparable<Employee>
     {    // struct inherte from Class Value Type    after that Class Value Type inherte  from Object 
          // Equals and GetHashCode()     مهمين جدا وهما ال Two Methods  علي  override    مهم جدا وهو علشان ي   Object  و struct    بين اي   Class Value Type وجود ال 
 
         public int ID { get; set; }
         public string?  Name  { get; set; }
         public decimal Salary  { get; set; }
+
+
+
+        #region Object Methods
+
+        public override string ToString()
+        {
+            return $"ID = {ID} , Name = {Name} ,  Salary = {Salary} ";
+        }
+        public int CompareTo(Employee? other)
+        {
+            if (other is null) return 1;
+            return this.Salary.CompareTo(other.Salary); // CompareTo for the Genaric  
+                                                        //return this.Salary.CompareTo(other? .Salary);  // CompareTo for the Object 
+
+            ///  if(this.Salary > other.Salary)
+            ///      return 1;
+            ///  else if(this.Salary < other.Salary)
+            ///      return -1;
+            ///  else 
+            ///      return 0;
+        }
+
+        public override int GetHashCode()
+        {
+
+
+            return HashCode.Combine(this.ID, this.Name, this.Salary);
+            /// int hashcode = 11;  //  C# 8   وبيمنع التصادم ودا لحد  GetHashCode()افضل طريقه لل
+            /// hashcode = (hashcode*7)    + this.ID.GetHashCode();
+            /// hashcode = (hashcode * 7) + this.Name?.GetHashCode() ?? default(int) ;
+            /// hashcode = (hashcode * 7) + this.Salary.GetHashCode();
+            /// return hashcode;
+            //return ID.GetHashCode() ^ Name?.GetHashCode() ?? default(int) /*0*/ ^  Salary.GetHashCode() ;  // +  بس ف نفس الوقت دي مش احسن طريقه علشان ممكن يحصل تصادم حتي بطريقه ال   Processing  اسرع فال 
+            // return ID.GetHashCode() + Name?.GetHashCode() ?? default(int) /*0*/ + Salary.GetHashCode() ;
+        }
+
+
+        #endregion
 
 
 
@@ -77,19 +132,7 @@ namespace Demo1_AdvanceOOP
         //employee01= {ID = 10 , Name = "Ahmed" , Salary= 1000}
         //employee02= {ID = 1000 , Name = "Ahmed" , Salary= 10}
 
-        public override int GetHashCode()
-        {
-
-
-            return HashCode.Combine(this.ID, this.Name , this.Salary);
-             /// int hashcode = 11;  //  C# 8   وبيمنع التصادم ودا لحد  GetHashCode()افضل طريقه لل
-        /// hashcode = (hashcode*7)    + this.ID.GetHashCode();
-        /// hashcode = (hashcode * 7) + this.Name?.GetHashCode() ?? default(int) ;
-        /// hashcode = (hashcode * 7) + this.Salary.GetHashCode();
-        /// return hashcode;
-              //return ID.GetHashCode() ^ Name?.GetHashCode() ?? default(int) /*0*/ ^  Salary.GetHashCode() ;  // +  بس ف نفس الوقت دي مش احسن طريقه علشان ممكن يحصل تصادم حتي بطريقه ال   Processing  اسرع فال 
-             // return ID.GetHashCode() + Name?.GetHashCode() ?? default(int) /*0*/ + Salary.GetHashCode() ;
-        }
+       
 
        
 
