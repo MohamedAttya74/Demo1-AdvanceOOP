@@ -7,12 +7,30 @@ using System.Threading.Tasks;
 
 namespace Demo1_AdvanceOOP
 {
-    internal static  class   Helper <T> where T: IComparable<T>  // T must be Class or Struct Immplementing the built-in InterFace "IComparable"
+    internal static  class   Helper <T> where T: class, IComparable<T> , new() /* , IEnumerable<T>, ICloneable*/ // T must be Class or Struct Immplementing the built-in InterFace "IComparable"
         /* where T : class*/
     {      //    بس  Method   وممكن يكون علي ال    class   ممكن يكون علي ال  Genaric    ال 
-                    
-      
-        
+
+
+        //Primary Constraint  [ 0 : 1 ]
+        //  1-General Primary  Constraint 
+        //     class => T Must Be Class
+        //     struct => T Must Be Struct 
+        //     notnull => T Must Be Not Nullable  ( C# 8.0 )
+        //     defult  =>   Search    
+        //     unmanged => 
+        //     Enam => T must Be Enum (C# 7.3)  ==( Specila Primary Constraint not General Primary  Constraint )
+        // 2- Specila Primary Constraint (USer-Defined Class (Except Sealed ))
+        //     point => T Must Be Point  Or Another Class inherits from Point  
+
+        ///  2 - Secondary constraint (InterFace Constraint )  [ 0 : M ]
+        ///    IComparable<T> 
+        ///  T Must Be class/struct Immplementing  IComparable
+
+        // Paramterless  Constractor  Constraint [0:1]
+        // T Must Be Datatype Having Accesable [non-private] Paramterless Constractor
+        // Till C# 12.0 Only One Constructor Constraint
+        // Can`t Use new()  [ Constractor  Constraint ] with struct [Specila Primary Constraint ]
         public static void BubbleSort(T[] Arr)
         {
             if(Arr is null || Arr.Length == 0) 
@@ -43,7 +61,8 @@ namespace Demo1_AdvanceOOP
                     }
                 }
             }
-        } public static void BubbleSort(T[] Arr, Func<T, T, bool> comparer)
+        } 
+        public static void BubbleSort(T[] Arr, Func<T, T, bool> comparer)
         {
             if(Arr is null || Arr.Length == 0) 
                     return;
@@ -119,7 +138,6 @@ namespace Demo1_AdvanceOOP
                 }
             return -1;
         }
-           
 
 
 
@@ -127,33 +145,37 @@ namespace Demo1_AdvanceOOP
 
 
 
-            /// public static void SWAP (ref object  X  , ref object  Y  )
-            /// {
-            ///     Console.WriteLine("=================SWAP=============== ");
-            ///     object  Temp = X;    // 1-    ودي حاجه مش حلوه طبعا   Boxing and UnBoxing   خلاني استخدم ال  Object  بس ال  
-            ///     X=Y;                 // 2-Type Safe  الي بكتبه مش  Code ال 
-            ///                          // 3-  ممكن يجي ودا مش كويس طبعا   Type بتاعي مفتوح ل اي  Scope   يعني ال Limits   مش  Object   ال 
-            ///     Y = Temp;
-            /// }
+
+        /// public static void SWAP (ref object  X  , ref object  Y  )
+        /// {
+        ///     Console.WriteLine("=================SWAP=============== ");
+        ///     object  Temp = X;    // 1-    ودي حاجه مش حلوه طبعا   Boxing and UnBoxing   خلاني استخدم ال  Object  بس ال  
+        ///     X=Y;                 // 2-Type Safe  الي بكتبه مش  Code ال 
+        ///                          // 3-  ممكن يجي ودا مش كويس طبعا   Type بتاعي مفتوح ل اي  Scope   يعني ال Limits   مش  Object   ال 
+        ///     Y = Temp;
+        /// }
 
 
-            /// public static void SWAP(ref double X  , ref double  Y  )
-            /// {
-            ///     Console.WriteLine("=================SWAP=============== ");
-            ///     double Temp = X;
-            ///     X=Y; 
-            ///     Y=Temp;
-            /// }
+        /// public static void SWAP(ref double X  , ref double  Y  )
+        /// {
+        ///     Console.WriteLine("=================SWAP=============== ");
+        ///     double Temp = X;
+        ///     X=Y; 
+        ///     Y=Temp;
+        /// }
 
 
-            /// public static void SWAP(ref Point X, ref Point Y)
-            /// {
-            ///     Console.WriteLine("=================SWAP=============== ");
-            ///     Point Temp = X;
-            ///     X = Y;
-            ///     Y = Temp;
-            /// }
+        /// public static void SWAP(ref Point X, ref Point Y)
+        /// {
+        ///     Console.WriteLine("=================SWAP=============== ");
+        ///     Point Temp = X;
+        ///     X = Y;
+        ///     Y = Temp;
+        /// }
 
 
-        }
+
+      
+
+    }
 }
